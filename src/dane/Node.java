@@ -35,4 +35,5 @@ public class Node<T> {
         if( next == null ) return false;
         else return true;
     }
+
 }
