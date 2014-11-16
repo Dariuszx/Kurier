@@ -3,29 +3,23 @@ package dane;
 public class City  {
 
     private String name;
-    private int weight;
     private NeighbourList neighbourList;
 
-    public City( String name, int weight ) {
+    public City( String name ) {
         this.name = name;
-        this.weight = weight;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getWeight() {
-        return weight;
-    }
-
     public NeighbourList getNeighbourList() {
         return neighbourList;
     }
 
-    public void setNeighbour( City city, int index ) {
+    public void setNeighbour( City city, int index, int weight ) {
 
-        NeighbourList n = new NeighbourList( city, index );
+        NeighbourList n = new NeighbourList( city, index, weight );
         if( neighbourList == null ) neighbourList = n;
         else neighbourList.setNext( n );
     }

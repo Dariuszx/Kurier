@@ -9,12 +9,12 @@ public class Main {
     public static void main( String[] args ) {
 
         Map test = new Map();
-        test.addCity( new City( "Warszawa", 100 ) );
-        test.addCity( new City( "Radom", 100 ) );
-        test.addCity( new City( "Kraków", 100 ) );
+        test.addCity( new City( "Warszawa" ) );
+        test.addCity( new City( "Radom" ) );
+        test.addCity( new City( "Kraków" ) );
 
-        test.setNeighbour( 0, 1 );
-        test.setNeighbour( 0, 2 );
+        test.setNeighbour( 0, 1, 80 );
+        test.setNeighbour( 0, 2, 50 );
 
         WypisywanieSasiedztwa.wypisz( test );
     }

@@ -3,12 +3,14 @@ package dane;
 public class NeighbourList {
 
     private City city;
+    private int weight;
     private NeighbourList next;
     private int index;
 
-    public NeighbourList( City city, int index ) {
+    public NeighbourList( City city, int index, int weight ) {
         this.city = city;
         this.index = index;
+        this.weight = weight;
     }
 
     public boolean hasNext() {
@@ -21,6 +23,10 @@ public class NeighbourList {
 
     public int getIndex() {
         return index;
+    }
+
+    public int getWeight() {
+        return weight;
     }
 
     public NeighbourList getNext() {

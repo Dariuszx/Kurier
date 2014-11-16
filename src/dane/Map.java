@@ -19,10 +19,10 @@ public class Map {
         return cityArrayList.get( index );
     }
 
-    public void setNeighbour( int indexA, int indexB ) {
+    public void setNeighbour( int indexA, int indexB, int weight ) {
 
-        cityArrayList.get( indexA ).setNeighbour( cityArrayList.get( indexB ), indexB  );
-        cityArrayList.get( indexB ).setNeighbour( cityArrayList.get( indexA ), indexA  );
+        cityArrayList.get( indexA ).setNeighbour( cityArrayList.get( indexB ), indexB, weight );
+        cityArrayList.get( indexB ).setNeighbour( cityArrayList.get( indexA ), indexA, weight );
     }
 
     public int getSize() {

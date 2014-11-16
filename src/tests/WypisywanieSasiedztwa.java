@@ -18,7 +18,7 @@ public class WypisywanieSasiedztwa {
             NeighbourList neighbourList = tmp.getNeighbourList();
 
             while ( neighbourList != null ) {
-                System.out.print( neighbourList.getCity().getName() + " " );
+                System.out.print( neighbourList.getCity().getName() + " (" + neighbourList.getWeight() + ") " );
                 neighbourList = neighbourList.getNext();
             }
 
