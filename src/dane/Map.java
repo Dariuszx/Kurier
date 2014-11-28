@@ -12,6 +12,7 @@ public class Map {
     }
 
     public void addCity( City city ) {
+        city.setIndex( cityArrayList.size() );
         cityArrayList.add( city );
     }
 
@@ -27,6 +28,11 @@ public class Map {
 
     public int getSize() {
         return cityArrayList.size();
+    }
+
+    public int getCityIndex( City city ) {
+
+
     }
 
 }

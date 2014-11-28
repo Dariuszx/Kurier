@@ -3,6 +3,7 @@ package dane;
 public class City  {
 
     private String name;
+    private int index;
     private NeighbourList neighbourList;
 
     public City( String name ) {
@@ -24,4 +25,16 @@ public class City  {
         else neighbourList.setNext( n );
     }
 
+    public void changeWeight( int priority ) {
+        //TODO muszę wymyśleć jak przeskalować wagi czasów dojścia dla sąsiadów
+        //TODO w zależności od priorytetu zlecenia, które jest zaadresowane na to miasto
+    }
+
+    public void setIndex( int i ) {
+        index = i;
+    }
+
+    public int getIndex() {
+        return index;
+    }
 }
