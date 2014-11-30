@@ -26,4 +26,13 @@ public class WypisywanieSasiedztwa {
         }
     }
 
+    public static void wypiszTablice( int[] tablica ) {
+
+        System.out.println();
+        System.out.println();
+        for( int i=0; i < tablica.length; i++ ) {
+            System.out.println( tablica[i] );
+        }
+    }
+
 }

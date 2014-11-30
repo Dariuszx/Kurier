@@ -3,7 +3,6 @@ package dane;
 public class City  {
 
     private String name;
-    private int index;
     private NeighbourList neighbourList;
 
     public City( String name ) {
@@ -30,11 +29,18 @@ public class City  {
         //TODO w zależności od priorytetu zlecenia, które jest zaadresowane na to miasto
     }
 
-    public void setIndex( int i ) {
-        index = i;
+    @Override
+    public int hashCode() {
+
+        String hash = name;
+        NeighbourList tmp = neighbourList;
+
+        while( tmp != null ) {
+            hash += "" + tmp.getCity().getName();
+            tmp = tmp.getNext();
+        }
+
+        return hash.hashCode();
     }
 
-    public int getIndex() {
-        return index;
-    }
 }

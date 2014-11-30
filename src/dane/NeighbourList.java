@@ -2,10 +2,10 @@ package dane;
 
 public class NeighbourList {
 
-    private City city;
+    private City city; //Obiekt miasta
     private int weight;
-    private NeighbourList next;
-    private int index;
+    private NeighbourList next; //Wskaźnik na następnego sąsiada
+    private int index; //Indeks miasta w tablicy wszystkich miast
 
     public NeighbourList( City city, int index, int weight ) {
         this.city = city;

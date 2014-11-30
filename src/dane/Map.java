@@ -12,12 +12,28 @@ public class Map {
     }
 
     public void addCity( City city ) {
-        city.setIndex( cityArrayList.size() );
         cityArrayList.add( city );
+    }
+
+    public void addCity( int index, City city ) {
+        cityArrayList.add( index, city );
     }
 
     public City getCity( int index ) {
         return cityArrayList.get( index );
+    }
+
+    public int getCityIndex( City city ) {
+
+        for( int i=0; i < cityArrayList.size(); i++ ) {
+            City tmp = cityArrayList.get(i);
+            if( tmp != null )
+                if( tmp.hashCode() == city.hashCode() )
+                    return i;
+
+        }
+
+        return -1;
     }
 
     public void setNeighbour( int indexA, int indexB, int weight ) {
@@ -28,11 +44,6 @@ public class Map {
 
     public int getSize() {
         return cityArrayList.size();
-    }
-
-    public int getCityIndex( City city ) {
-
-
     }
 
 }
