@@ -1,13 +1,10 @@
 package algorytmy;
 
-import dane.City;
-import dane.Map;
-import dane.NeighbourList;
-import dane.Path;
+import dane.*;
 
 public class Dijkstry {
 
-    private int[] d, p;
+    public int[] d, p;
     private boolean[] QS;
 
     private City cityA;
@@ -32,7 +29,6 @@ public class Dijkstry {
 
             City tmp = returnSmallestWeight();
             browseNeighbours( tmp );
-
 
         }
     }
@@ -73,12 +69,6 @@ public class Dijkstry {
 
     }
 
-    public void moveCityFromQToS( City city ) {
-
-        S.addCity( city );
-        QS[ Q.getCityIndex( city ) ] = true;
-    }
-
     public static void setNeighboursDistance( Map mapa, int[] d, NeighbourList neighbourList) {
 
         if( neighbourList == null ) return;
@@ -114,4 +104,22 @@ public class Dijkstry {
         return array;
     }
 
+    public PathToCity returnPath( City cityB ) {
+
+        PathToCity path = new PathToCity( new ArrayPath() );
+
+        int index = Q.getCityIndex( cityB );
+
+        path.begin();
+
+        while( index != -1 ) {
+
+            path.addCity( Q.getCity( index ));
+            index = p[index];
+        }
+
+        path.end();
+
+        return path;
+    }
 }

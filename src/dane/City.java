@@ -43,4 +43,13 @@ public class City  {
         return hash.hashCode();
     }
 
+    @Override
+    public boolean equals( Object obj ) {
+
+        if( obj instanceof City && obj.hashCode() == this.hashCode() ) {
+            return true;
+        }
+        return false;
+    }
+
 }

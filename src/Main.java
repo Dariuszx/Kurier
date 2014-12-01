@@ -1,7 +1,6 @@
 import algorytmy.Dijkstry;
-import dane.City;
+import dane.*;
 
-import dane.Map;
 import tests.WypisywanieSasiedztwa;
 
 
@@ -16,6 +15,7 @@ public class Main {
         test.addCity( new City( "3" ) );
         test.addCity( new City( "4" ) );
         test.addCity( new City( "5" ) );
+        test.addCity( new City( "6" ) );
 
         test.setNeighbour( 0, 1, 30 );
         test.setNeighbour( 0, 4, 30 );
@@ -26,11 +26,30 @@ public class Main {
         test.setNeighbour( 2, 3, 30 );
         test.setNeighbour( 3, 5, 10 );
         test.setNeighbour( 4, 5, 20 );
+        test.setNeighbour( 6, 3, 40 );
 
 
-        WypisywanieSasiedztwa.wypisz( test );
+        OrderQueue orderQueue = new OrderQueue();
+
+        orderQueue.push( new Order( "rower", 0, 2, 70 ) );
+        orderQueue.push( new Order( "krzesło", 0, 3, 18 ) );
+        orderQueue.push( new Order( "Kolumny", 0, 3, 18 ) );
+        orderQueue.push( new Order( "Stół", 0, 3, 58 ) );
+        orderQueue.push( new Order( "Prata C", 0, 3, 82 ) );
+        orderQueue.push( new Order( "Coś fajnego", 0, 3, 45 ) );
+
+        WypisywanieSasiedztwa.wypiszKolejke( orderQueue );
+
+        //WypisywanieSasiedztwa.wypisz( test );
 
         Dijkstry d =  new Dijkstry( test, test.getCity(0) );
+
+        PathToCity path = d.returnPath( test.getCity( 6 ) );
+
+
+
+        //WypisywanieSasiedztwa.wypiszTablice( d.p );
+       // WypisywanieSasiedztwa.wypiszSciezke( path.getPath() );
 
     }
 }

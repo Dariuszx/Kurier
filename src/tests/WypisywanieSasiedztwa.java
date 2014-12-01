@@ -1,9 +1,7 @@
 package tests;
 
 
-import dane.City;
-import dane.Map;
-import dane.NeighbourList;
+import dane.*;
 
 public class WypisywanieSasiedztwa {
 
@@ -32,6 +30,27 @@ public class WypisywanieSasiedztwa {
         System.out.println();
         for( int i=0; i < tablica.length; i++ ) {
             System.out.println( tablica[i] );
+        }
+    }
+
+    public static void wypiszSciezke( Data<City> path ) {
+
+        System.out.println();
+        System.out.println();
+
+        for( int i=0; i < path.size(); i++ ) {
+            System.out.print(path.get(i).getName() + " -> ");
+        }
+
+        System.out.println();
+        System.out.println();
+    }
+
+    public static void wypiszKolejke( OrderQueue orderQueue ) {
+
+        while( !orderQueue.empty() ) {
+            System.out.println(orderQueue.front().getProductName() + " : " + orderQueue.front().getPriority() );
+            orderQueue.pop();
         }
     }
 

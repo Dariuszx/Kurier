@@ -15,8 +15,8 @@ public class Map {
         cityArrayList.add( city );
     }
 
-    public void addCity( int index, City city ) {
-        cityArrayList.add( index, city );
+    public void addCity( String name  ) {
+        cityArrayList.add( new City( name ) );
     }
 
     public City getCity( int index ) {
