@@ -1,6 +1,5 @@
 package dane;
 
-
 public class OrderQueue {
 
     private Queue<Order> head;
@@ -59,5 +58,73 @@ public class OrderQueue {
         
     }
 
+    public boolean isset( Order tmp ) {
+
+         Queue<Order> h = head;
+
+            while( h != null ) {
+
+                Order orderTmp = h.getValue();
+                if( tmp.getId() == orderTmp.getId() ) {
+                    return true;
+                }
+
+                h = h.getNext();
+            }
+        return false;
+    }
+
+    public void delete( Order tmp ) {
+
+        OrderQueue orderQueue = new OrderQueue();
+
+        while( head != null ) {
+            if( head.getValue().getId() != tmp.getId() )
+                orderQueue.push( head.getValue() );
+            head = head.getNext();
+        }
+
+        head = orderQueue.head;
+        tail = orderQueue.tail;
+    }
+
+    public OrderQueue getQueueByPath( Map map, PathToCity path ) {
+
+        OrderQueue queue = new OrderQueue();
+
+        for( int i=0; i < path.getPath().size(); i++ ) {
+
+            City tmp = path.getPath().get(i);
+            int index = map.getCityIndex( tmp );
+            Queue<Order> h = head;
+
+            while( h != null ) {
+
+                Order orderTmp = h.getValue();
+                boolean flag = false;
+
+                if( orderTmp.getIndexB() == index || orderTmp.getIndexA() == index ) {
+
+                    for( int j=0; j < path.getPath().size(); j++ ) {
+                        if (map.getCityIndex(path.getPath().get(i)) == orderTmp.getIndexA()) {
+                            flag = true;
+                            break;
+                        }
+                    }
+
+                    if( flag ) {
+                        queue.push(orderTmp);
+                        delete(orderTmp);
+                    }
+                }
+
+                h = h.getNext();
+            }
+
+        }
+
+        return queue;
+
+    }
 
 }

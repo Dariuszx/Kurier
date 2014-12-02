@@ -31,25 +31,35 @@ public class Main {
 
         OrderQueue orderQueue = new OrderQueue();
 
-        orderQueue.push( new Order( "rower", 0, 2, 70 ) );
-        orderQueue.push( new Order( "krzesło", 0, 3, 18 ) );
-        orderQueue.push( new Order( "Kolumny", 0, 3, 18 ) );
-        orderQueue.push( new Order( "Stół", 0, 3, 58 ) );
-        orderQueue.push( new Order( "Prata C", 0, 3, 82 ) );
-        orderQueue.push( new Order( "Coś fajnego", 0, 3, 45 ) );
+        orderQueue.push( new Order( "rower", 0, 1, 70, 001 ) );
+        orderQueue.push( new Order( "krzesło", 0, 5, 18, 002 ) );
+        orderQueue.push( new Order( "Kolumny", 2, 6, 18, 003 ) );
+        orderQueue.push( new Order( "Stół", 4, 0, 58, 004 ) );
+        orderQueue.push( new Order( "Prata C", 0, 3, 82, 005 ) );
+        orderQueue.push( new Order( "Coś fajnego", 0, 5, 45, 006 ) );
 
-        WypisywanieSasiedztwa.wypiszKolejke( orderQueue );
+        Dijkstry d =  new Dijkstry( test, test.getCity(4) );
 
+
+        OrderQueue another = orderQueue.getQueueByPath( test, d.returnPath( test.getCity(5)) );
+
+
+        WypisywanieSasiedztwa.wypiszKolejke( another );
+
+        System.out.println();
+        System.out.println();
+
+        //WypisywanieSasiedztwa.wypiszKolejke( orderQueue );
         //WypisywanieSasiedztwa.wypisz( test );
 
-        Dijkstry d =  new Dijkstry( test, test.getCity(0) );
-
-        PathToCity path = d.returnPath( test.getCity( 6 ) );
 
 
+        PathToCity path = d.returnPath( test.getCity( 5 ) );
 
-        //WypisywanieSasiedztwa.wypiszTablice( d.p );
-       // WypisywanieSasiedztwa.wypiszSciezke( path.getPath() );
+
+
+        //WypisywanieSasiedztwa.wypiszTablice( d.d );
+        WypisywanieSasiedztwa.wypiszSciezke( path.getPath() );
 
     }
 }

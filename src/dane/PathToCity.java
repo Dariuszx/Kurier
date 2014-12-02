@@ -45,7 +45,7 @@ public class PathToCity {
 
     }
 
-    public Data getPath() {
+    public Data<City> getPath() {
         return path;
     }
 }

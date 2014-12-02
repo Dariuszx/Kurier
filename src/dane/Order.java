@@ -7,13 +7,15 @@ public class Order {
     private int indexB;
 
     private int priority;
+    private int id;
 
-    public Order(String productName, int indexA, int indexB, int priority) {
+    public Order(String productName, int indexA, int indexB, int priority, int id ) {
 
         this.productName = productName;
         this.indexA = indexA;
         this.indexB = indexB;
         this.priority = priority;
+        this.id = id;
     }
 
     public String getProductName() {
@@ -48,4 +50,11 @@ public class Order {
         this.priority = priority;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
