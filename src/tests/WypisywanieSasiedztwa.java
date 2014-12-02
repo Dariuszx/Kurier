@@ -2,6 +2,9 @@ package tests;
 
 
 import dane.*;
+import dane.orders.ArrayOrders;
+import dane.orders.Order;
+import dane.orders.OrderQueue;
 
 public class WypisywanieSasiedztwa {
 
@@ -33,13 +36,18 @@ public class WypisywanieSasiedztwa {
         }
     }
 
-    public static void wypiszSciezke( Data<City> path ) {
+    public static void wypiszSciezke( Data path ) {
 
         System.out.println();
         System.out.println();
 
         for( int i=0; i < path.size(); i++ ) {
-            System.out.print(path.get(i).getName() + " -> ");
+            if ( path instanceof City )
+                System.out.print( ((City)path.get(i)).getName() + " -> ");
+            else if ( path instanceof ArrayOrders) {
+                System.out.println(((Order) path.get(i)).getProductName() );
+
+            }
         }
 
         System.out.println();

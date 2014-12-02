@@ -1,6 +1,9 @@
 import algorytmy.Dijkstry;
 import dane.*;
 
+import dane.orders.ArrayOrders;
+import dane.orders.Order;
+import dane.orders.OrderQueue;
 import tests.WypisywanieSasiedztwa;
 
 
@@ -8,7 +11,21 @@ public class Main {
 
     public static void main( String[] args ) {
 
+
+        //Tablica samochodów kurierskich
+        Data<CourierCar> courierCars = new ArrayCourierCars();
+
+        //Graf
         Map test = new Map();
+
+        //Kolejka priorytetowa zleceń
+        OrderQueue orderQueue = new OrderQueue();
+
+        //Tablica kosztów dojść do wszystkich wierzchołków grafu
+        Data<Dijkstry> dijkstryData = new ArrayDijkstry();
+
+
+
         test.addCity( new City( "0" ) );
         test.addCity( new City( "1" ) );
         test.addCity( new City( "2" ) );
@@ -29,7 +46,6 @@ public class Main {
         test.setNeighbour( 6, 3, 40 );
 
 
-        OrderQueue orderQueue = new OrderQueue();
 
         orderQueue.push( new Order( "rower", 0, 1, 70, 001 ) );
         orderQueue.push( new Order( "krzesło", 0, 5, 18, 002 ) );
@@ -38,28 +54,8 @@ public class Main {
         orderQueue.push( new Order( "Prata C", 0, 3, 82, 005 ) );
         orderQueue.push( new Order( "Coś fajnego", 0, 5, 45, 006 ) );
 
-        Dijkstry d =  new Dijkstry( test, test.getCity(4) );
 
-
-        OrderQueue another = orderQueue.getQueueByPath( test, d.returnPath( test.getCity(5)) );
-
-
-        WypisywanieSasiedztwa.wypiszKolejke( another );
-
-        System.out.println();
-        System.out.println();
-
-        //WypisywanieSasiedztwa.wypiszKolejke( orderQueue );
-        //WypisywanieSasiedztwa.wypisz( test );
-
-
-
-        PathToCity path = d.returnPath( test.getCity( 5 ) );
-
-
-
-        //WypisywanieSasiedztwa.wypiszTablice( d.d );
-        WypisywanieSasiedztwa.wypiszSciezke( path.getPath() );
-
+        //Generuję wszystkie czasy dojścia do wierzchołków
+        ((ArrayDijkstry)dijkstryData).generate( test );
     }
 }

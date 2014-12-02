@@ -1,4 +1,9 @@
-package dane;
+package dane.orders;
+
+import dane.City;
+import dane.Data;
+import dane.Map;
+import dane.PathToCity;
 
 public class OrderQueue {
 
@@ -88,9 +93,7 @@ public class OrderQueue {
         tail = orderQueue.tail;
     }
 
-    public OrderQueue getQueueByPath( Map map, PathToCity path ) {
-
-        OrderQueue queue = new OrderQueue();
+    public Data<Order> getQueueByPath( Map map, PathToCity path, Data<Order> orders ) {
 
         for( int i=0; i < path.getPath().size(); i++ ) {
 
@@ -113,7 +116,7 @@ public class OrderQueue {
                     }
 
                     if( flag ) {
-                        queue.push(orderTmp);
+                        orders.add( orderTmp );
                         delete(orderTmp);
                     }
                 }
@@ -122,9 +125,7 @@ public class OrderQueue {
             }
 
         }
-
-        return queue;
-
+        return orders;
     }
 
 }

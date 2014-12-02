@@ -1,4 +1,4 @@
-package dane;
+package dane.orders;
 
 public class Queue<T> {
 
