@@ -62,4 +62,20 @@ public class WypisywanieSasiedztwa {
         }
     }
 
+    public static void wypiszZamowieniaKurierow( Data<CourierCar> courierCars ) {
+
+        for ( int i=0; i < courierCars.size(); i++ ) {
+
+            CourierCar car = courierCars.get( i );
+            System.out.println( "Samochod id=" + car.getId() );
+
+            Data<Order> orders = car.getOrders();
+
+            for( int j=0; j < orders.size(); j++ ) {
+                System.out.print( " " + orders.get(j).getProductName() );
+            }
+            System.out.println();
+        }
+    }
+
 }

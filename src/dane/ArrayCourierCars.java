@@ -10,6 +10,7 @@ public class ArrayCourierCars implements Data<CourierCar> {
     @Override
     public void add(CourierCar data) {
 
+        data.setAlghoritmPath( new ArrayPath() );
         courierCars.add( data );
     }
 

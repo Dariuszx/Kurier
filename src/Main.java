@@ -2,6 +2,7 @@ import algorytmy.Dijkstry;
 import dane.*;
 
 import dane.orders.ArrayOrders;
+import dane.orders.AssignOrders;
 import dane.orders.Order;
 import dane.orders.OrderQueue;
 import tests.WypisywanieSasiedztwa;
@@ -54,8 +55,17 @@ public class Main {
         orderQueue.push( new Order( "Prata C", 0, 3, 82, 005 ) );
         orderQueue.push( new Order( "Coś fajnego", 0, 5, 45, 006 ) );
 
+        courierCars.add( new CourierCar( new ArrayOrders(), 0, 01 ) );
+        courierCars.add( new CourierCar( new ArrayOrders(), 0, 02 ) );
 
         //Generuję wszystkie czasy dojścia do wierzchołków
-        ((ArrayDijkstry)dijkstryData).generate( test );
+        ((ArrayDijkstry)dijkstryData).generate(test);
+
+        AssignOrders assignOrders = new AssignOrders();
+        assignOrders.assignOrders( dijkstryData, courierCars, test, orderQueue );
+
+
+        System.out.println( courierCars.get(1).getOrders().size() );
+        WypisywanieSasiedztwa.wypiszZamowieniaKurierow( courierCars );
     }
 }
