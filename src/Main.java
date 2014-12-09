@@ -1,19 +1,16 @@
 import algorytmy.Dijkstry;
 import dane.*;
 
+import dane.messages.CollectMessages;
 import dane.orders.ArrayOrders;
 import dane.orders.AssignOrders;
 import dane.orders.Order;
 import dane.orders.OrderQueue;
+import tests.WypisywanieSasiedztwa;
 
 public class Main {
 
     public static void main( String[] args ) {
-
-
-        //TODO zmienić przechowywanie zleceń w samochodach kurierskich
-        //TODO na listy priorytetowe, w zależności od czasu dojścia
-
 
         //Tablica samochodów kurierskich
         Data<CourierCar> courierCars = new ArrayCourierCars();
@@ -28,13 +25,13 @@ public class Main {
         Data<Dijkstry> dijkstryData = new ArrayDijkstry();
 
 
-        test.addCity( new City( "0" ) );
-        test.addCity( new City( "1" ) );
-        test.addCity( new City( "2" ) );
-        test.addCity( new City( "3" ) );
-        test.addCity( new City( "4" ) );
-        test.addCity( new City( "5" ) );
-        test.addCity( new City( "6" ) );
+        test.addCity( new City( "Warszawa" ) );
+        test.addCity( new City( "Radom" ) );
+        test.addCity( new City( "Sosnowiec" ) );
+        test.addCity( new City( "Stalowa Wola" ) );
+        test.addCity( new City( "Karków" ) );
+        test.addCity( new City( "Lipa" ) );
+        test.addCity( new City( "Poznań" ) );
 
         test.setNeighbour( 0, 1, 30 );
         test.setNeighbour( 0, 4, 30 );
@@ -56,9 +53,9 @@ public class Main {
         orderQueue.push( new Order( "Coś fajnego", 0, 5, 45, 006 ) );
 
 
-        courierCars.add(new CourierCar(new ArrayOrders(), 2, 01));
-        courierCars.add( new CourierCar( new ArrayOrders(), 4, 02 ) );
-        courierCars.add( new CourierCar( new ArrayOrders(), 0, 03 ) );
+        courierCars.add(new CourierCar(new ArrayOrders(), 2, 1, 10));
+        courierCars.add( new CourierCar( new ArrayOrders(), 4, 2, 10 ) );
+        courierCars.add( new CourierCar( new ArrayOrders(), 0, 3, 10 ) );
 
         //Generuję wszystkie czasy dojścia do wierzchołków
         ((ArrayDijkstry)dijkstryData).generate(test);
@@ -69,7 +66,12 @@ public class Main {
 
         AssignOrders.assign(dijkstryData, courierCars, test, orderQueue);
 
+        CollectMessages collectMessages = new CollectMessages( test, courierCars, dijkstryData );
 
+        //ystem.out.println( collectMessages.getKomunikaty().pop().getKomunikat() );
+
+
+        WypisywanieSasiedztwa.wypiszKomunikaty( collectMessages.getKomunikaty(), test );
 
         //WypisywanieSasiedztwa.wypiszKolejke( orderQueue );
 
@@ -80,7 +82,8 @@ public class Main {
         //System.out.println( courierCars.get(1).getOrders().size() );
         //WypisywanieSasiedztwa.wypiszZamowieniaKurierow( courierCars );
 
-        //WypisywanieSasiedztwa.wypiszSciezke( courierCars.get(0).getPath() );
+
+        //WypisywanieSasiedztwa.wypiszSciezke(courierCars.get(0).getPath());
         //WypisywanieSasiedztwa.wypiszSciezke( courierCars.get(1).getPath() );
         //WypisywanieSasiedztwa.wypiszSciezke( courierCars.get(2).getPath() );
     }

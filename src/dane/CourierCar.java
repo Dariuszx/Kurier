@@ -13,32 +13,24 @@ public class CourierCar {
 
     private Data<City> path;
 
-    public CourierCar( Data<Order> orders, int indexOfStartPossition, int id ) {
+    public CourierCar( Data<Order> orders, int indexOfStartPossition, int id, int maxOrders ) {
 
         this.orders = orders;
+        this.maxOrders = maxOrders;
         this.indexOfStartPossition = indexOfStartPossition;
         this.id = id;
         this.path = new ArrayPath();
     }
 
     public void addOrder( Order order ) {
+
         orders.add( order );
     }
 
+    public boolean isSpace() { return orders.size() < maxOrders; }
+
     public Data<Order> getOrders() {
         return orders;
-    }
-
-    public int getMaxOrders() {
-        return maxOrders;
-    }
-
-    public void setMaxOrders(int maxOrders) {
-        this.maxOrders = maxOrders;
-    }
-
-    public int getIndexOfLastCity() {
-        return indexOfLastCity;
     }
 
     public void setIndexOfLastCity(int indexOfLastCity) {
@@ -47,10 +39,6 @@ public class CourierCar {
 
     public int getIndexOfStartPossition() {
         return indexOfStartPossition;
-    }
-
-    public void setIndexOfStartPossition(int indexOfStartPossition) {
-        this.indexOfStartPossition = indexOfStartPossition;
     }
 
     public Data<City> getPath() {

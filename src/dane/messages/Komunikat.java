@@ -1,6 +1,7 @@
 package dane.messages;
 
 
+import dane.CourierCar;
 import dane.orders.Order;
 
 public class Komunikat {
@@ -8,12 +9,14 @@ public class Komunikat {
     private Order order;
     private String komunikat;
     private int czas;
+    private CourierCar courierCar;
 
-    public Komunikat( Order o, String k, int t ) {
+    public Komunikat( Order o, CourierCar courierCar, String k, int t ) {
 
         order = o;
         komunikat = k;
         czas = t;
+        this.courierCar = courierCar;
     }
 
     public Order getOrder() {
@@ -38,5 +41,9 @@ public class Komunikat {
 
     public void setCzas(int czas) {
         this.czas = czas;
+    }
+
+    public CourierCar getCourierCar() {
+        return courierCar;
     }
 }

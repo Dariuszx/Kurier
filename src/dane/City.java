@@ -24,9 +24,18 @@ public class City  {
         else neighbourList.setNext( n );
     }
 
-    public void changeWeight( int priority ) {
-        //TODO muszę wymyśleć jak przeskalować wagi czasów dojścia dla sąsiadów
-        //TODO w zależności od priorytetu zlecenia, które jest zaadresowane na to miasto
+    public int getWeight( int index) {
+
+        NeighbourList tmp = neighbourList;
+
+        while ( tmp != null ) {
+            if ( tmp.getIndex() == index ) {
+                return tmp.getWeight();
+            }
+            tmp = tmp.getNext();
+        }
+
+        return 0;
     }
 
     @Override

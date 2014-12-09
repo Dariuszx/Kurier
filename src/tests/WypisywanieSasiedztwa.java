@@ -3,6 +3,8 @@ package tests;
 
 import algorytmy.Dijkstry;
 import dane.*;
+import dane.messages.Komunikat;
+import dane.messages.Komunikaty;
 import dane.orders.ArrayOrders;
 import dane.orders.Order;
 import dane.orders.OrderQueue;
@@ -102,4 +104,24 @@ public class WypisywanieSasiedztwa {
 
     }
 
+    public static void wypiszKomunikaty( Komunikaty komunikaty, Map map ) {
+
+        System.out.println( "Statusy zleceń:" );
+
+        while ( !komunikaty.empty() ) {
+
+            System.out.println();
+            Komunikat komunikat = komunikaty.pop();
+
+            System.out.print( komunikat.getCzas() + " " + komunikat.getKomunikat() + " przesyłkę ");
+            System.out.print( komunikat.getOrder().getId() + " (" + komunikat.getOrder().getProductName() + ") ");
+
+            if( komunikat.getKomunikat().equals( "dostarczono" ) )
+                System.out.print( "do miasta " + map.getCity(komunikat.getOrder().getIndexB()).getName() );
+            else
+                System.out.print( "z miasta " + map.getCity(komunikat.getOrder().getIndexA()).getName() );
+
+        }
+
+    }
 }

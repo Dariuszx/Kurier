@@ -41,15 +41,9 @@ public class AssignOrders {
                     orderQueue = OrderQueue.getOrdersByPath( orderQueue, pathToCityB.getPath(), courierCar, map );
                 }
 
-               //System.out.println( "Wrzucam do samochodu id=" + courierCar.getId() + " paczke " + order.getProductName() );
-
-                //System.out.println( "Do samochodu " + courierCar.getId() + " wrzucam " + order.getProductName() );
-
                 //Ustawiam index miasto ostatniego do którego pojadę
                 courierCar.setIndexOfLastCity( order.getIndexB() );
 
-                //Wrzucam paczkę do samochodu
-                //courierCar.addOrder(orderQueue.pop());
             }
 
         }

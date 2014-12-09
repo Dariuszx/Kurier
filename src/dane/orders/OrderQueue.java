@@ -60,36 +60,6 @@ public class OrderQueue {
         
     }
 
-    public boolean isset( Order tmp ) {
-
-         Queue<Order> h = head;
-
-            while( h != null ) {
-
-                Order orderTmp = h.getValue();
-                if( tmp.getId() == orderTmp.getId() ) {
-                    return true;
-                }
-
-                h = h.getNext();
-            }
-        return false;
-    }
-
-    public void delete( Order tmp ) {
-
-        OrderQueue orderQueue = new OrderQueue();
-
-        while( head != null ) {
-            if( head.getValue().getId() != tmp.getId() )
-                orderQueue.push( head.getValue() );
-            head = head.getNext();
-        }
-
-        head = orderQueue.head;
-        tail = orderQueue.tail;
-    }
-
     public static OrderQueue getOrdersByPath( OrderQueue orderQueue, Data<City> pathToCity, CourierCar courierCar, Map map ) {
 
         OrderQueue tmp = new OrderQueue();
@@ -99,7 +69,7 @@ public class OrderQueue {
             Order order = orderQueue.pop();
 
             //Sprawdzam czy mogę po drodze zabrać przesyłkę i ją dostarczyć gdzieś
-            if( pathToCity.get( map.getCity( order.getIndexA() ) ) != null && pathToCity.get( map.getCity( order.getIndexB() )) != null )
+            if( courierCar.isSpace() && pathToCity.get( map.getCity( order.getIndexA() ) ) != null && pathToCity.get( map.getCity( order.getIndexB() )) != null )
             {
                 courierCar.addOrder( order );
             }
