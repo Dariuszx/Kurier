@@ -19,6 +19,10 @@ public class ArrayDijkstry implements Data<Dijkstry> {
         }
     }
 
+    public PathToCity getPathDijkstry( Map map, int indexA, int indexB ) {
+        return get(indexA).returnPath( map.getCity( indexB ) );
+    }
+
     @Override
     public void add(Dijkstry data) {
 

@@ -1,9 +1,6 @@
 package dane.orders;
 
-import dane.City;
-import dane.Data;
-import dane.Map;
-import dane.PathToCity;
+import dane.*;
 
 public class OrderQueue {
 
@@ -93,39 +90,28 @@ public class OrderQueue {
         tail = orderQueue.tail;
     }
 
-    public Data<Order> getQueueByPath( Map map, PathToCity path, Data<Order> orders ) {
+    public static OrderQueue getOrdersByPath( OrderQueue orderQueue, Data<City> pathToCity, CourierCar courierCar, Map map ) {
 
-        for( int i=0; i < path.getPath().size(); i++ ) {
+        OrderQueue tmp = new OrderQueue();
 
-            City tmp = path.getPath().get(i);
-            int index = map.getCityIndex( tmp );
-            Queue<Order> h = head;
+        while ( !orderQueue.empty() ) {
 
-            while( h != null ) {
+            Order order = orderQueue.pop();
 
-                Order orderTmp = h.getValue();
-                boolean flag = false;
-
-                if( orderTmp.getIndexB() == index || orderTmp.getIndexA() == index ) {
-
-                    for( int j=0; j < path.getPath().size(); j++ ) {
-                        if (map.getCityIndex(path.getPath().get(i)) == orderTmp.getIndexA()) {
-                            flag = true;
-                            break;
-                        }
-                    }
-
-                    if( flag ) {
-                        orders.add( orderTmp );
-                        delete(orderTmp);
-                    }
-                }
-
-                h = h.getNext();
+            //Sprawdzam czy mogę po drodze zabrać przesyłkę i ją dostarczyć gdzieś
+            if( pathToCity.get( map.getCity( order.getIndexA() ) ) != null && pathToCity.get( map.getCity( order.getIndexB() )) != null )
+            {
+                courierCar.addOrder( order );
             }
-
+            else
+            {
+                tmp.push( order );
+            }
         }
-        return orders;
+
+        courierCar.addPath( pathToCity );
+
+        return tmp;
     }
 
 }

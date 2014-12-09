@@ -5,23 +5,23 @@ import dane.CourierCar;
 import dane.Data;
 import dane.Map;
 import dane.PathToCity;
+import tests.WypisywanieSasiedztwa;
 
 public class AssignOrders {
 
-    public void assignOrders( Data<Dijkstry> dijkstryData, Data<CourierCar> courierCars, Map map, OrderQueue orderQueue ) {
+    //metoda przydziela zlecenia do kolejnych samochodów kurierskich
+    public static void assign( Data<Dijkstry> dijkstryData, Data<CourierCar> courierCars, Map map, OrderQueue orderQueue ) {
 
-
+        //Jeżeli zlecenia nieprzydzielone != 0
         while ( !orderQueue.empty() ) {
 
             //Przechodzę przez samochody kurierskie
             for( int i=0; i < courierCars.size(); i++ ) {
 
-                CourierCar courierCar = courierCars.get( i );
-                Order order = orderQueue.front();
+                CourierCar courierCar = courierCars.get( i ); //samochód kurierski
+                Order order = orderQueue.front(); //pobieram pierwsze zlecenie z góry
 
-                //Ustawiam index miasto ostatniego do którego pojadę
-                courierCar.setIndexOfLastCity(order.getIndexB());
-
+                if ( order == null ) break;
 
                 //Jeżeli zlecenie nie jest w mieście gdzie startuje samochód
                 //Zapisuje ścieżke gdzie ma pojechać
@@ -29,22 +29,27 @@ public class AssignOrders {
                 if( order.getIndexA() != courierCar.getIndexOfStartPossition() ) {
                     //Ścieżka z A -> B
                     PathToCity pathToCityB = dijkstryData.get( courierCar.getIndexOfStartPossition() ).returnPath( map.getCity( order.getIndexA() ) );
+
                     //Ścieżka B -> C
                     PathToCity pathToCityC = dijkstryData.get( order.getIndexA() ).returnPath( map.getCity( order.getIndexB() ) );
 
-                    orderQueue.getQueueByPath( map, pathToCityB, courierCar.getOrders() );
-                    orderQueue.getQueueByPath( map, pathToCityC, courierCar.getOrders() );
+                    orderQueue = OrderQueue.getOrdersByPath( orderQueue, pathToCityB.getPath(), courierCar, map );
+                    orderQueue = OrderQueue.getOrdersByPath( orderQueue, pathToCityC.getPath(), courierCar, map );
 
                 } else {
                     PathToCity pathToCityB = dijkstryData.get( order.getIndexA() ).returnPath( map.getCity( order.getIndexB() ) );
-                    orderQueue.getQueueByPath( map, pathToCityB, courierCar.getOrders() );
+                    orderQueue = OrderQueue.getOrdersByPath( orderQueue, pathToCityB.getPath(), courierCar, map );
                 }
 
                //System.out.println( "Wrzucam do samochodu id=" + courierCar.getId() + " paczke " + order.getProductName() );
 
+                //System.out.println( "Do samochodu " + courierCar.getId() + " wrzucam " + order.getProductName() );
+
+                //Ustawiam index miasto ostatniego do którego pojadę
+                courierCar.setIndexOfLastCity( order.getIndexB() );
 
                 //Wrzucam paczkę do samochodu
-                courierCar.addOrder(orderQueue.pop());
+                //courierCar.addOrder(orderQueue.pop());
             }
 
         }

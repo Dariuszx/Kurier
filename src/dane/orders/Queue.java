@@ -1,5 +1,7 @@
 package dane.orders;
 
+import dane.messages.Komunikat;
+
 public class Queue<T> {
 
     private T value;
@@ -26,6 +28,6 @@ public class Queue<T> {
     }
 
     public int getPriority() {
-        return value instanceof Order ? ((Order) value).getPriority() : -1;
+        return value instanceof Order ? ((Order) value).getPriority() : ((Komunikat) value).getCzas();
     }
 }

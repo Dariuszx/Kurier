@@ -1,9 +1,6 @@
 package dane;
 
-
 import dane.orders.Order;
-
-
 
 public class CourierCar {
 
@@ -11,8 +8,8 @@ public class CourierCar {
     private int maxOrders;
     private int id;
 
-    private int indexOfLastCity;
-    private int indexOfStartPossition;
+    private int indexOfLastCity = -1;
+    private int indexOfStartPossition = -1;
 
     private Data<City> path;
 
@@ -21,6 +18,7 @@ public class CourierCar {
         this.orders = orders;
         this.indexOfStartPossition = indexOfStartPossition;
         this.id = id;
+        this.path = new ArrayPath();
     }
 
     public void addOrder( Order order ) {
@@ -57,6 +55,14 @@ public class CourierCar {
 
     public Data<City> getPath() {
         return path;
+    }
+
+    public void addPath( Data<City> path ) {
+
+        for( int i=0; i < path.size(); i++ ) {
+            this.path.add( path.get(i) );
+        }
+
     }
 
     public void setAlghoritmPath( Data<City> path ) {

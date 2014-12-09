@@ -1,6 +1,7 @@
 package tests;
 
 
+import algorytmy.Dijkstry;
 import dane.*;
 import dane.orders.ArrayOrders;
 import dane.orders.Order;
@@ -36,29 +37,31 @@ public class WypisywanieSasiedztwa {
         }
     }
 
-    public static void wypiszSciezke( Data path ) {
+    public static void wypiszSciezke( Data<City> path ) {
 
-        System.out.println();
         System.out.println();
 
         for( int i=0; i < path.size(); i++ ) {
-            if ( path instanceof City )
-                System.out.print( ((City)path.get(i)).getName() + " -> ");
-            else if ( path instanceof ArrayOrders) {
-                System.out.println(((Order) path.get(i)).getProductName() );
-
-            }
+            System.out.print( path.get(i).getName() + " -> ");
         }
 
-        System.out.println();
-        System.out.println();
     }
 
     public static void wypiszKolejke( OrderQueue orderQueue ) {
 
+        int i=0;
         while( !orderQueue.empty() ) {
-            System.out.println(orderQueue.front().getProductName() + " : " + orderQueue.front().getPriority() );
+            System.out.println( "i=" + i++ + " " + orderQueue.front().getProductName() + " : " + orderQueue.front().getPriority() );
             orderQueue.pop();
+        }
+    }
+
+    public static void wypiszSamochody( Data<CourierCar> courierCars ) {
+
+        for( int i=0; i < courierCars.size(); i++ ) {
+
+            CourierCar courierCar = courierCars.get(i);
+            System.out.println( "i=" + i + " Samochod id=" + courierCar.getId() );
         }
     }
 
@@ -76,6 +79,27 @@ public class WypisywanieSasiedztwa {
             }
             System.out.println();
         }
+    }
+
+    public static void wypiszCzasyDojscia( Data<Dijkstry> czasyDojscia, Map map ) {
+
+        for( int i=0; i < czasyDojscia.size(); i++ ) {
+
+            Dijkstry dijkstry = czasyDojscia.get(i);
+
+            for( int j=0; j < dijkstry.d.length; j++ ) {
+
+                if( dijkstry.p[j] >= 0 ) {
+                    PathToCity path = dijkstry.returnPath( map.getCity( j ) );
+                    wypiszSciezke(path.getPath());
+                    System.out.print( " - czas dojścia = " + dijkstry.d[j]);
+                }
+
+            }
+
+
+        }
+
     }
 
 }
