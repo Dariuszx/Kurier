@@ -1,15 +1,14 @@
-package tests;
+package look;
 
 
 import algorytmy.Dijkstry;
 import dane.*;
 import dane.messages.Komunikat;
 import dane.messages.Komunikaty;
-import dane.orders.ArrayOrders;
 import dane.orders.Order;
 import dane.orders.OrderQueue;
 
-public class WypisywanieSasiedztwa {
+public class WritingOnScreen {
 
     public static void wypisz( Map mapa ) {
 
@@ -71,6 +70,7 @@ public class WypisywanieSasiedztwa {
 
         for ( int i=0; i < courierCars.size(); i++ ) {
 
+            System.out.println();
             CourierCar car = courierCars.get( i );
             System.out.println( "Samochod id=" + car.getId() );
 

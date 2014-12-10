@@ -5,7 +5,6 @@ import dane.CourierCar;
 import dane.Data;
 import dane.Map;
 import dane.PathToCity;
-import tests.WypisywanieSasiedztwa;
 
 public class AssignOrders {
 

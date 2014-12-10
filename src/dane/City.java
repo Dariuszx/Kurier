@@ -3,10 +3,16 @@ package dane;
 public class City  {
 
     private String name;
+    private int id;
     private NeighbourList neighbourList;
 
     public City( String name ) {
         this.name = name;
+    }
+
+    public City( String name, int id ) {
+        this.name = name;
+        this.id = id;
     }
 
     public String getName() {
