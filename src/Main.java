@@ -25,10 +25,42 @@ public class Main {
 
         try {
             new DataLoading(args).loadData( test, courierCars, orderQueue, dijkstryData );
-            AssignOrders.assign( dijkstryData, courierCars, test, orderQueue );
 
-            CollectMessages collectMessages = new CollectMessages( test, courierCars, dijkstryData );
-            WritingOnScreen.wypiszKomunikaty(collectMessages.getKomunikaty(), test);
+            int i=0;
+
+            CollectMessages collectMessages = new CollectMessages();
+
+
+            AssignOrders.assign(dijkstryData, courierCars, test, orderQueue);
+
+
+            collectMessages.collect( test, courierCars, dijkstryData );
+
+
+            //WritingOnScreen.wypiszKomunikaty(collectMessages.getKomunikaty(), test);
+
+            //WritingOnScreen.wypiszSciezke(courierCars.get(2).getPath());
+
+            //WritingOnScreen.wypiszKolejke( orderQueue );
+            //WritingOnScreen.wypiszZamowieniaKurierow(courierCars);
+
+                    // while ( ++i == 1 || AssignOrders.assign( dijkstryData, courierCars, test, orderQueue ) ) {
+
+                    //System.out.println( i );
+                    //WritingOnScreen.wypiszZamowieniaKurierow( courierCars );
+
+                    //
+
+
+                    //
+                    //  }
+
+                    //
+            //WritingOnScreen.wypiszKolejke( orderQueue );
+
+            //
+
+            //
 
         } catch ( FileFormatException e) {
             System.out.println(e.message);

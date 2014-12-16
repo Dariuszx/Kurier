@@ -12,4 +12,5 @@ public interface Data<T> {
 
     public void set( int index, T city );
 
+    public T pop( int index );
 }

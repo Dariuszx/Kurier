@@ -36,4 +36,9 @@ public class ArrayPath implements Data<City> {
     public void set( int index, City city ) {
         path.set( index, city );
     }
+
+    @Override
+    public City pop(int index) {
+        return null;
+    }
 }

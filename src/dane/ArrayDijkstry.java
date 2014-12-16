@@ -44,4 +44,9 @@ public class ArrayDijkstry implements Data<Dijkstry> {
     public void set(int index, Dijkstry city) {
 
     }
+
+    @Override
+    public Dijkstry pop(int index) {
+        return null;
+    }
 }

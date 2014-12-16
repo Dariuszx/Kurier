@@ -1,6 +1,8 @@
 package dane.orders;
 
+import algorytmy.Dijkstry;
 import dane.*;
+
 
 public class OrderQueue {
 
@@ -57,21 +59,27 @@ public class OrderQueue {
 
         if( head != null ) return head.getValue();
         else return null;
-        
+
     }
 
     public static OrderQueue getOrdersByPath( OrderQueue orderQueue, Data<City> pathToCity, CourierCar courierCar, Map map ) {
 
         OrderQueue tmp = new OrderQueue();
 
+        int numberOfOrders = 0;
+
         while ( !orderQueue.empty() ) {
 
             Order order = orderQueue.pop();
 
             //Sprawdzam czy mogę po drodze zabrać przesyłkę i ją dostarczyć gdzieś
-            if( courierCar.isSpace() && pathToCity.get( map.getCity( order.getIndexA() ) ) != null && pathToCity.get( map.getCity( order.getIndexB() )) != null )
+            if( numberOfOrders < courierCar.getMaxOrders() && pathToCity.get( map.getCity( order.getIndexA() ) ) != null && pathToCity.get( map.getCity( order.getIndexB() )) != null )
             {
+
+                courierCar.getCourierOrderQueue().add( new CourierOrder( order ));
+
                 courierCar.addOrder( order );
+                numberOfOrders++;
             }
             else
             {

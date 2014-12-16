@@ -33,4 +33,9 @@ public class ArrayOrders implements Data<Order> {
     public void set(int index, Order city) {
 
     }
+
+    @Override
+    public Order pop(int index) {
+        return orders.remove(index);
+    }
 }

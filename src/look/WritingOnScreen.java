@@ -62,7 +62,7 @@ public class WritingOnScreen {
         for( int i=0; i < courierCars.size(); i++ ) {
 
             CourierCar courierCar = courierCars.get(i);
-            System.out.println( "i=" + i + " Samochod id=" + courierCar.getId() );
+            System.out.println( "i=" + i + " Samochod id=" + courierCar.getId() + " start position=" +courierCar.getIndexOfStartPossition() );
         }
     }
 
@@ -77,7 +77,7 @@ public class WritingOnScreen {
             Data<Order> orders = car.getOrders();
 
             for( int j=0; j < orders.size(); j++ ) {
-                System.out.print( " " + orders.get(j).getProductName() );
+                System.out.print( " " + orders.get(j).getProductName() + "#" + orders.get(j).getId() );
             }
             System.out.println();
         }
@@ -116,10 +116,12 @@ public class WritingOnScreen {
             System.out.print( komunikat.getCzas() + " " + komunikat.getKomunikat() + " przesyłkę ");
             System.out.print( komunikat.getOrder().getId() + " (" + komunikat.getOrder().getProductName() + ") ");
 
-            if( komunikat.getKomunikat().equals( "dostarczono" ) )
+            if( komunikat.getKomunikat().equals( "Dostarczono" ) )
                 System.out.print( "do miasta " + map.getCity(komunikat.getOrder().getIndexB()).getName() );
             else
                 System.out.print( "z miasta " + map.getCity(komunikat.getOrder().getIndexA()).getName() );
+
+            System.out.print( " | Samochód id=" + komunikat.getCourierCar().getId() );
 
         }
 

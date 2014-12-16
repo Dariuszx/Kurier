@@ -33,4 +33,9 @@ public class ArrayCourierCars implements Data<CourierCar> {
     public void set(int index, CourierCar city) {
 
     }
+
+    @Override
+    public CourierCar pop(int index) {
+        return null;
+    }
 }
