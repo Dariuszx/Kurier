@@ -2,11 +2,14 @@ package dane;
 
 import dane.orders.Order;
 
+import java.util.ArrayList;
+
 public class CourierCar {
 
     private Data<Order> orders;
     private int maxOrders;
     private int id;
+    private ArrayList<KolejkaZamowien> kolejkaZamowien;
 
     private int indexOfLastCity = -1;
     private int indexOfStartPossition = -1;
@@ -18,8 +21,10 @@ public class CourierCar {
         this.orders = orders;
         this.maxOrders = maxOrders;
         this.indexOfStartPossition = indexOfStartPossition;
+        this.indexOfLastCity = indexOfStartPossition;
         this.id = id;
         this.path = new ArrayPath();
+        this.kolejkaZamowien = new ArrayList<KolejkaZamowien>();
     }
 
     public void addOrder( Order order ) {
@@ -59,5 +64,21 @@ public class CourierCar {
 
     public int getId() {
         return id;
+    }
+
+    public int getIndexOfLastCity() {
+        return indexOfLastCity;
+    }
+
+    public int getMaxOrders() {
+        return maxOrders;
+    }
+
+    public ArrayList<KolejkaZamowien> getKolejkaZamowien() {
+        return kolejkaZamowien;
+    }
+
+    public void addOrderToQueue( Order order, City city ) {
+        kolejkaZamowien.add( new KolejkaZamowien( order, city ) );
     }
 }

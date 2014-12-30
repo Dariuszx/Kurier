@@ -25,10 +25,19 @@ public class Main {
 
         try {
             new DataLoading(args).loadData( test, courierCars, orderQueue, dijkstryData );
-            AssignOrders.assign( dijkstryData, courierCars, test, orderQueue );
 
-            CollectMessages collectMessages = new CollectMessages( test, courierCars, dijkstryData );
-            WritingOnScreen.wypiszKomunikaty(collectMessages.getKomunikaty(), test);
+            //WritingOnScreen.wypiszCzasyDojscia( dijkstryData, test );
+            AssignOrders.assign( dijkstryData, courierCars, test, orderQueue );
+            AssignOrders.allocateTime( courierCars, test );
+
+
+            WritingOnScreen.wypiszWKolejnsciZamowienia( courierCars.get(1).getKolejkaZamowien() );
+
+            WritingOnScreen.wypiszSciezke(courierCars.get(1).getPath());
+
+            //CollectMessages collectMessages = new CollectMessages( test, courierCars, dijkstryData );
+            //WritingOnScreen.wypiszKomunikaty(collectMessages.getKomunikaty(), test);
+            //WritingOnScreen.wypiszZamowieniaKurierow( courierCars );
 
         } catch ( FileFormatException e) {
             System.out.println(e.message);

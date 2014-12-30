@@ -63,14 +63,17 @@ public class OrderQueue {
     public static OrderQueue getOrdersByPath( OrderQueue orderQueue, Data<City> pathToCity, CourierCar courierCar, Map map ) {
 
         OrderQueue tmp = new OrderQueue();
+        int ordersAdded = 0;
 
         while ( !orderQueue.empty() ) {
 
             Order order = orderQueue.pop();
 
             //Sprawdzam czy mogę po drodze zabrać przesyłkę i ją dostarczyć gdzieś
-            if( courierCar.isSpace() && pathToCity.get( map.getCity( order.getIndexA() ) ) != null && pathToCity.get( map.getCity( order.getIndexB() )) != null )
+            if( ordersAdded < (courierCar.getMaxOrders()-1) && pathToCity.get( map.getCity( order.getIndexA() ) ) != null && pathToCity.get( map.getCity( order.getIndexB() )) != null )
             {
+                ordersAdded++;
+                courierCar.addOrderToQueue( order, map.getCity( order.getIndexA() ) );
                 courierCar.addOrder( order );
             }
             else

@@ -8,6 +8,8 @@ import dane.messages.Komunikaty;
 import dane.orders.Order;
 import dane.orders.OrderQueue;
 
+import java.util.ArrayList;
+
 public class WritingOnScreen {
 
     public static void wypisz( Map mapa ) {
@@ -123,5 +125,16 @@ public class WritingOnScreen {
 
         }
 
+    }
+
+    public static void wypiszWKolejnsciZamowienia( ArrayList<KolejkaZamowien> zamowienia ) {
+
+        for( int i=0; i < zamowienia.size(); i++ ) {
+
+            KolejkaZamowien zamowienie = zamowienia.get(i);
+
+            System.out.println( "Miasto: " + zamowienie.getCity().getName() + " zamowienie " + zamowienie.getOrder().getProductName() + " | " + zamowienie.getOrder().getIndexA() + " [[czas (" + zamowienie.getTimeGet() + ")]] -> " + zamowienie.getOrder().getIndexB() + " [[czas (" + zamowienie.getTimeDelivered() + ")]]" );
+
+        }
     }
 }
